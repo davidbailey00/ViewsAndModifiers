@@ -7,10 +7,29 @@
 
 import SwiftUI
 
+struct TitleFont: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.title)
+            .foregroundColor(.blue)
+    }
+}
+
+extension View {
+    func titleFont() -> some View {
+        self.modifier(TitleFont())
+    }
+}
+
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Text("Hello, world!")
+            Button("Print type") {
+                print(type(of: self.body))
+            }
+        }
+        .titleFont()
     }
 }
 
